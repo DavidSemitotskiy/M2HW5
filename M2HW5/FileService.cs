@@ -20,6 +20,11 @@ namespace M2HW5
 
         public static void SaveToFile(Logger logger)
         {
+            if (logger == null || logger.Logs.Count == 0)
+            {
+                return;
+            }
+
             Config config = JsonConvert.DeserializeObject<Config>(File.ReadAllText("config.json"));
             DirectoryInfo dir = new DirectoryInfo(config.Logger.DirectoryPath);
             var files = dir.GetFiles();
